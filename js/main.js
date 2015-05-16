@@ -19,18 +19,25 @@ function randomRgb() {
 }
 
 function Circle() {
-
 	var c = document.getElementById('c');
 
+	$(c).addClass('animated bounceInUp');
+
+	$(c).click(function(e) {
+		console.log(e);
+		console.log(_complete);
+	});
+
 	var ctx = (c.getContext) ? c.getContext('2d') : null;
-	ctx.clearRect(55, 0, 100, 100);
+
+	var _complete = false;
 
 	var createCircle = function() {
 		var r = 45; //radius
 		var h = 155; // x circle center
 		var k = 50; // y circle center
 
-		var i = setInterval(outlineCircle, 50);
+		var i = setInterval(outlineCircle, 30);
 
 		ctx.strokeStyle = 'red';
 		ctx.beginPath();
@@ -65,21 +72,34 @@ function Circle() {
 			//in radians and a circle's center (h,k)
 			//float x = r*cos(t) + h;
 			//float y = r*sin(t) + k;
+			var rA;
+			var x2;
+			var y2;
 
-			if (a < 125) {
-				//ctx.beginPath();
-				var rA = randomRadian()
-				var x2 = (r * Math.cos(rA) + h);
-				var y2 = (r * Math.sin(rA) + k);
-				//ctx.strokeStyle = 'rgb(' +
-				//		randomRgb() + ', ' +
-				//		randomRgb() + ', ' +
-				//		randomRgb() + ')';
+			if (a < 100) {
+				ctx.beginPath();
+
+				rA = randomRadian();
+				x2 = (r * Math.cos(rA) + h);
+				y2 = (r * Math.sin(rA) + k);
+				ctx.moveTo(x2, y2);
+
+				rA = randomRadian();
+				x2 = (r * Math.cos(rA) + h);
+				y2 = (r * Math.sin(rA) + k);
 				ctx.lineTo(x2, y2);
+
+				ctx.strokeStyle = 'rgb(' +
+						randomRgb() + ', ' +
+						randomRgb() + ', ' +
+						randomRgb() + ')';
+
+				
 				ctx.stroke();
-				//ctx.closePath();
+				ctx.closePath();
 				++a;
 			} else {
+				_complete = true;
 				clearInterval(i);
 			}
 			
@@ -89,14 +109,32 @@ function Circle() {
 
 	return {
 		createCircle: createCircle,
-		get context() {
-			return ctx;
+		get complete() {
+			return _complete;
 		}
 	};
 
 };
 
+function cueByline() {
+	function showByline() {
+		var byline = document.getElementById('byline');
+		$(byline).fadeIn();
+	}
+	var tid = setTimeout(showByline, 2500);
+}
+
+function cueLinks() {
+	function showLinks() {
+		var links = document.getElementById('links');
+		$(links).fadeIn();
+	}
+	var tid = setTimeout(showLinks, 4500);
+}
+
 window.onload = function() {
 	var c = new Circle();
 	c.createCircle();
+	cueByline();
+	cueLinks();
 }

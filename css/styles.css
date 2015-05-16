@@ -5,15 +5,29 @@
 	font-weight: 200;
 }
 
-
-
 .container {
 	position: absolute;
-	/*background-color: #eee;*/
 	left: 50%;
 	top: 50%;
 	margin-left: -160px;
 	margin-top: -240px;
 	width: 320px;
 	height: 480px;
+}
+
+h3 {
+	font-size: 1.3em;
+	text-align: center;
+	display: none;
+}
+
+h5 {
+	text-align: center;
+	display: none;
+	margin-top: 10px;
+}
+
+a {
+	text-decoration: none;
+	color: brown;
 }
