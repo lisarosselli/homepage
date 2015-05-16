@@ -1,0 +1,19 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-weight: 200;
+}
+
+
+
+.container {
+	position: absolute;
+	/*background-color: #eee;*/
+	left: 50%;
+	top: 50%;
+	margin-left: -160px;
+	margin-top: -240px;
+	width: 320px;
+	height: 480px;
+}
