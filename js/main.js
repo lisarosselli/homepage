@@ -7,7 +7,7 @@
 
 function convertToRadians(degrees) {
 	return ((Math.PI/180) * degrees);
-};
+}
 
 function randomRadian() {
 	var twoRan = Math.random() * 2;
@@ -114,7 +114,7 @@ function Circle() {
 		}
 	};
 
-};
+}
 
 function cueByline() {
 	function showByline() {
@@ -137,4 +137,4 @@ window.onload = function() {
 	c.createCircle();
 	cueByline();
 	cueLinks();
-}
+};
