@@ -40,7 +40,11 @@ function Circle() {
 
 		var i = setInterval(outlineCircle, 30);
 
-		ctx.strokeStyle = 'red';
+		//ctx.strokeStyle = 'red';
+		ctx.strokeStyle = 'rgb(' +
+			randomRgb() + ', ' +
+			randomRgb() + ', ' +
+			randomRgb() + ')';
 		ctx.beginPath();
 
 		var a = 0;
