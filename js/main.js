@@ -18,6 +18,14 @@ function randomRgb() {
 	return Math.floor(Math.random() * 255);
 }
 
+function randomColor() {
+	var s = 'rgb(' +
+			randomRgb() + ', ' +
+			randomRgb() + ', ' +
+			randomRgb() + ')';
+	return s;
+}
+
 function Circle() {
 	var c = document.getElementById('c');
 
@@ -40,11 +48,7 @@ function Circle() {
 
 		var i = setInterval(outlineCircle, 30);
 
-		//ctx.strokeStyle = 'red';
-		ctx.strokeStyle = 'rgb(' +
-			randomRgb() + ', ' +
-			randomRgb() + ', ' +
-			randomRgb() + ')';
+		ctx.strokeStyle = randomColor();
 		ctx.beginPath();
 
 		var a = 0;
@@ -88,29 +92,21 @@ function Circle() {
 			var y2;
 
 			if (a < 100) {
-				//ctx.beginPath();
-
-				//rA = randomRadian();
-				//x2 = (r * Math.cos(rA) + h);
-				//y2 = (r * Math.sin(rA) + k);
-				//ctx.moveTo(x2, y2);
+				ctx.beginPath();
+				ctx.moveTo(prevPoint.x, prevPoint.y);
 
 				rA = randomRadian();
 				x2 = (r * Math.cos(rA) + h);
 				y2 = (r * Math.sin(rA) + k);
 				ctx.lineTo(x2, y2);
 
-				//prevPoint.x = x2;
-				//prevPoint.y = y2;
+				prevPoint.x = x2;
+				prevPoint.y = y2;
 
-				//ctx.strokeStyle = 'rgb(' +
-				//		randomRgb() + ', ' +
-				//		randomRgb() + ', ' +
-				//		randomRgb() + ')';
-
+				ctx.strokeStyle = randomColor();
 				
 				ctx.stroke();
-				//ctx.closePath();
+				ctx.closePath();
 				++a;
 			} else {
 				_complete = true;
