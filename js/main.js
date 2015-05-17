@@ -36,6 +36,7 @@ function Circle() {
 		var r = 45; //radius
 		var h = 155; // x circle center
 		var k = 50; // y circle center
+		var prevPoint = {};
 
 		var i = setInterval(outlineCircle, 30);
 
@@ -47,12 +48,17 @@ function Circle() {
 		function outlineCircle() {
 			if (a > 330) {
 				clearInterval(i);
-				a = 0;
 				ctx.closePath();
+				a = 0;
+				
 				var rA = randomRadian();
 				var x2 = r * Math.cos(rA) + h;
 				var y2 = r * Math.sin(rA) + k;
+				prevPoint.x = x2;
+				prevPoint.y = y2;
 				ctx.moveTo(x2, y2);
+				ctx.beginPath();
+
 				i = setInterval(scratchIn, 70);
 				return;
 			}
@@ -67,6 +73,7 @@ function Circle() {
 			a += f;
 		}
 
+
 		function scratchIn() {
 			//Given a radius length r and an angle t 
 			//in radians and a circle's center (h,k)
@@ -77,26 +84,29 @@ function Circle() {
 			var y2;
 
 			if (a < 100) {
-				ctx.beginPath();
+				//ctx.beginPath();
 
-				rA = randomRadian();
-				x2 = (r * Math.cos(rA) + h);
-				y2 = (r * Math.sin(rA) + k);
-				ctx.moveTo(x2, y2);
+				//rA = randomRadian();
+				//x2 = (r * Math.cos(rA) + h);
+				//y2 = (r * Math.sin(rA) + k);
+				//ctx.moveTo(x2, y2);
 
 				rA = randomRadian();
 				x2 = (r * Math.cos(rA) + h);
 				y2 = (r * Math.sin(rA) + k);
 				ctx.lineTo(x2, y2);
 
-				ctx.strokeStyle = 'rgb(' +
-						randomRgb() + ', ' +
-						randomRgb() + ', ' +
-						randomRgb() + ')';
+				//prevPoint.x = x2;
+				//prevPoint.y = y2;
+
+				//ctx.strokeStyle = 'rgb(' +
+				//		randomRgb() + ', ' +
+				//		randomRgb() + ', ' +
+				//		randomRgb() + ')';
 
 				
 				ctx.stroke();
-				ctx.closePath();
+				//ctx.closePath();
 				++a;
 			} else {
 				_complete = true;
